@@ -1,282 +1,279 @@
 <div align="center">
+<img src="docs/orb_preview.svg" width="280" alt="JARVIS Orb"/>
 
-<!-- ORBE ANIMÉE -->
-<p align="center">
-<img src="docs/orb_preview.svg" width="180" alt="JARVIS Orb"/>
-</p>
+# J · A · R · V · I · S
 
-# J.A.R.V.I.S
+**Assistant vocal personnel — 100% local · 100% français · Zéro cloud**
 
-### Assistant vocal personnel — 100% local, 100% français
-
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Vosk](https://img.shields.io/badge/STT-Vosk-00C7B7?style=for-the-badge)](https://alphacephei.com/vosk/)
-[![Piper](https://img.shields.io/badge/TTS-Piper-FF6B35?style=for-the-badge)](https://github.com/rhasspy/piper)
-[![Ollama](https://img.shields.io/badge/LLM-Ollama-black?style=for-the-badge)](https://ollama.ai)
-[![PyQt5](https://img.shields.io/badge/UI-PyQt5-41CD52?style=for-the-badge&logo=qt&logoColor=white)](https://riverbankcomputing.com/software/pyqt/)
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://kernel.org)
-
-> Dites **"Jarvis"** — il écoute, comprend, répond et agit. Sans internet, sans cloud, sans délai.
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Vosk](https://img.shields.io/badge/STT-Vosk-00C7B7?style=flat-square)](https://alphacephei.com/vosk/)
+[![Piper](https://img.shields.io/badge/TTS-Piper-FF6B35?style=flat-square)](https://github.com/rhasspy/piper)
+[![llama.cpp](https://img.shields.io/badge/LLM-llama--cpp-8A2BE2?style=flat-square)](https://github.com/ggerganov/llama.cpp)
+[![PyQt5](https://img.shields.io/badge/UI-PyQt5-41CD52?style=flat-square&logo=qt&logoColor=white)](https://riverbankcomputing.com/software/pyqt/)
+[![Linux](https://img.shields.io/badge/Linux-Ubuntu_24.04-E95420?style=flat-square&logo=ubuntu&logoColor=white)](https://ubuntu.com)
+[![License](https://img.shields.io/badge/licence-MIT-blue?style=flat-square)](LICENSE)
 
 </div>
+
+---
+
+<div align="center">
+
+```
+  Dites  ❝ Jarvis ❞  →  il écoute  →  comprend  →  répond  →  agit
+```
+
+</div>
+
+---
+
+## Ce que fait Jarvis
+
+| Capacité | Détail |
+|----------|--------|
+| 🎙️ **Wake word** | Détection passive de "Jarvis" en continu, ~2% CPU |
+| 🧠 **Compréhension** | Vosk STT français, vocab restreint pour les commandes |
+| ⚡ **LLM local** | llama-cpp-python + Qwen2.5-0.5B GGUF, streaming token/token |
+| 🔊 **Voix naturelle** | Piper TTS, voix Gilles, pipe direct sans fichier temporaire |
+| 🖥️ **17 commandes système** | Volume, apps, captures, infos système, veille, reboot... |
+| 🔒 **Confirmation vocale** | Actions dangereuses protégées par "oui / non" vocal |
+| 💬 **Mémoire** | Historique des 6 derniers échanges en contexte |
+| 🎨 **Interface orbe** | Fenêtre PyQt5 frameless, transparente, toujours au premier plan |
 
 ---
 
 ## Interface
 
 <div align="center">
-<img src="docs/orb_preview.svg" width="220" alt="JARVIS Orb — interface animée"/>
-<br/>
-<em>Fenêtre PyQt5 sans bordure · Transparente · Toujours au premier plan · Draggable</em>
-</div>
 
-| Couleur | État |
-|---------|------|
-| 🔵 Bleu `#00d4ff` | En veille |
-| 🟠 Orange `#ffaa00` | Écoute active |
-| 🟣 Violet `#ff00ff` | Traitement / LLM |
-| 🟢 Vert `#00ff88` | Réponse vocale |
+| État | Couleur | Comportement |
+|------|---------|-------------|
+| 🔵 En veille | `#00d4ff` | Pulse lent, particules lentes |
+| 🟠 Écoute | `#ffaa00` | Pulse rapide, barres vocales actives |
+| 🟣 Traitement | `#ff00ff` | Pulse intense, data streams |
+| 🟢 Parole | `#00ff88` | Ondes sonores, barres à fond |
 
 </div>
 
 ---
 
-## Fonctionnalités
+## Installation rapide
 
-- **Wake word** — détection passive du mot "Jarvis" sans consommer de ressources
-- **STT local** — reconnaissance vocale française via Vosk, zéro cloud
-- **TTS local** — synthèse vocale naturelle via Piper (voix Gilles)
-- **LLM local** — conversation via Ollama / qwen2.5, zéro internet requis
-- **17 commandes système** — volume, apps, captures, infos système, veille...
-- **Confirmation vocale** — les actions dangereuses demandent "oui / non" à voix haute
-- **Commandes numérotées** — dites "commande 13" pour une reconnaissance fiable
-- **Normalisation Vosk** — les variantes phonétiques sont toutes acceptées
-- **Interface orbe** — canvas animé WebGL dans une fenêtre PyQt5 native
-
----
-
-## Installation
-
-### Prérequis système
+<details>
+<summary><b>Étape 1 — Prérequis système</b></summary>
 
 ```bash
-sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine \
-                 python3-pip portaudio19-dev alsa-utils pulseaudio
+sudo apt update && sudo apt install -y \
+    python3-pip python3-venv \
+    python3-pyqt5 python3-pyqt5.qtwebengine \
+    portaudio19-dev alsa-utils pulseaudio \
+    cmake build-essential libopenblas-dev liblapack-dev \
+    wget unzip scrot
 ```
 
-### Cloner et configurer
+</details>
+
+<details>
+<summary><b>Étape 2 — Environnement Python</b></summary>
 
 ```bash
-git clone https://github.com/VOTRE_USERNAME/jarvis.git
-cd jarvis
+git clone https://github.com/Padre237/ultron.git
+cd ultron
 
-# Créer l'environnement virtuel
 python3 -m venv venv
 source venv/bin/activate
 
-# Exposer PyQt5 système dans le venv
+# Exposer PyQt5 système
 echo "/usr/lib/python3/dist-packages" > venv/lib/python3.12/site-packages/system-pyqt5.pth
 
-# Installer les dépendances Python
-pip install vosk sounddevice requests
+pip install vosk sounddevice requests piper-tts huggingface-hub
+
+# LLM local (compilation ~5-15 min)
+CMAKE_ARGS="-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS" \
+pip install llama-cpp-python --no-cache-dir
 ```
 
-### Télécharger les modèles
+</details>
+
+<details>
+<summary><b>Étape 3 — Télécharger les modèles</b></summary>
 
 ```bash
-# Modèle STT Vosk français
-mkdir -p models/vosk
-cd models/vosk
+# Modèle STT Vosk français (~41 Mo)
+mkdir -p models/vosk && cd models/vosk
 wget https://alphacephei.com/vosk/models/vosk-model-small-fr-0.22.zip
-unzip vosk-model-small-fr-0.22.zip
-cd ../..
+unzip vosk-model-small-fr-0.22.zip && cd ../..
 
-# Modèle TTS Piper (voix Gilles)
-mkdir -p models/piper
-cd models/piper
+# Modèle TTS Piper — voix Gilles (~61 Mo)
+mkdir -p models/piper && cd models/piper
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/gilles/low/fr_FR-gilles-low.onnx
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/gilles/low/fr_FR-gilles-low.onnx.json
 cd ../..
 
-# Installer Piper dans le venv
-pip install piper-tts
+# Modèle LLM GGUF Qwen2.5-0.5B (~491 Mo)
+mkdir -p models/gguf
+hf download Qwen/Qwen2.5-0.5B-Instruct-GGUF \
+    qwen2.5-0.5b-instruct-q4_k_m.gguf \
+    --local-dir models/gguf/
 ```
 
-### Installer et démarrer Ollama
+</details>
 
-```bash
-curl -fsSL https://ollama.ai/install.sh | sh
-ollama pull qwen2.5:0.5b
-```
-
-### Lancer Jarvis
+<details>
+<summary><b>Étape 4 — Vérification</b></summary>
 
 ```bash
 source venv/bin/activate
-python3 main.py
+python3 -c "
+import vosk, sounddevice, llama_cpp
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+import os, sys; sys.path.insert(0,'.')
+import config
+assert os.path.exists(config.VOSK_MODEL_PATH),  'Vosk manquant'
+assert os.path.exists(config.PIPER_MODEL_PATH), 'Piper manquant'
+assert os.path.exists(config.GGUF_MODEL_PATH),  'GGUF manquant'
+print('✓ Tout est prêt — lancez : ./run.sh')
+"
 ```
+
+</details>
+
+---
+
+## Lancement
+
+```bash
+./run.sh
+```
+
+> La fenêtre orbe s'ouvre. Dites **"Jarvis"** pour l'activer.
 
 ---
 
 ## Commandes vocales
 
-### Activation
+### Système numéroté — dites `commande` + numéro
 
-Dites **"Jarvis"** — l'orbe passe en orange et Jarvis répond **"Oui."**
+> Vosk reconnaît fiablement les chiffres. Variantes acceptées : *"command 3"*, *"komande six"*
 
----
+| N° | Action | N° | Action |
+|----|--------|----|--------|
+| `commande 1` | Ouvrir Firefox | `commande 10` | Utilisation CPU |
+| `commande 2` | Gestionnaire de fichiers | `commande 11` | Utilisation RAM |
+| `commande 3` | Terminal | `commande 12` | Espace disque |
+| `commande 4` | VLC | `commande 13` | Capture d'écran |
+| `commande 5` | Paramètres système | `commande 14` | Verrouiller l'écran |
+| `commande 6` | Volume + | `commande 15` | Veille ⚠️ |
+| `commande 7` | Volume - | `commande 16` | Redémarrer ⚠️ |
+| `commande 8` | Mute | `commande 17` | Éteindre ⚠️ |
+| `commande 9` | Unmute | | |
 
-### Système numéroté
-
-> Dites **"commande"** suivi du numéro. Variantes acceptées : *"command"*, *"komande"*, *"execute commande"*
-
-| N° | Action | Description |
-|----|--------|-------------|
-| `commande 1` | Ouvrir Firefox | Lance le navigateur |
-| `commande 2` | Ouvrir les fichiers | Lance Dolphin |
-| `commande 3` | Ouvrir le terminal | Lance Konsole |
-| `commande 4` | Ouvrir VLC | Lance le lecteur vidéo |
-| `commande 5` | Ouvrir les paramètres | Paramètres système |
-| `commande 6` | Augmenter le volume | +5% |
-| `commande 7` | Diminuer le volume | -5% |
-| `commande 8` | Couper le son | Mute toggle |
-| `commande 9` | Rétablir le son | Unmute |
-| `commande 10` | CPU | Affiche l'utilisation processeur |
-| `commande 11` | RAM | Affiche la mémoire utilisée |
-| `commande 12` | Disque | Affiche l'espace libre |
-| `commande 13` | Capture d'écran | Enregistre dans ~/Images |
-| `commande 14` | Verrouiller | Verrouille la session |
-| `commande 15` | Veille | Suspend *(confirmation vocale)* |
-| `commande 16` | Redémarrer | Reboot *(confirmation vocale)* |
-| `commande 17` | Éteindre | Shutdown *(confirmation vocale)* |
-
----
+> ⚠️ Confirmation vocale requise — dites **"oui"** ou **"non"**
 
 ### Commandes naturelles
 
-#### Applications
+<details>
+<summary><b>Voir toutes les commandes naturelles</b></summary>
+
+**Applications**
 ```
-"ouvre firefox"          → Lance Firefox
-"lance le terminal"      → Lance Konsole
-"ouvre les fichiers"     → Lance Dolphin
-"lance vlc"              → Lance VLC
-"ferme firefox"          → Ferme l'application
+"ouvre firefox"            → Lance Firefox
+"lance le terminal"        → Lance Konsole
+"ouvre les fichiers"       → Lance Dolphin
+"ferme vlc"                → Ferme l'application
 ```
 
-#### Volume
+**Volume**
 ```
-"augmente le volume" / "plus fort"    → +5%
-"diminue le volume"  / "moins fort"   → -5%
-"coupe le son"       / "silence"      → Mute
-"rétablis le son"    / "remets le son" → Unmute
-```
-
-#### Système
-```
-"processeur" / "CPU"          → % utilisation CPU
-"RAM" / "mémoire"             → RAM utilisée / totale
-"espace disque" / "stockage"  → Espace libre sur /
+"augmente le volume"       → +5%
+"baisse le son"            → -5%
+"coupe le son"             → Mute
+"rétablis le son"          → Unmute
 ```
 
-#### Divers
+**Système**
 ```
-"capture" / "screenshot"      → Capture d'écran → ~/Images
-"recherche document.pdf"      → Recherche dans ~/
-"verrouille"                  → Verrouille la session
-```
-
-#### Actions dangereuses *(confirmation vocale "oui / non" requise)*
-```
-"éteins" / "shutdown"         → Extinction
-"redémarre" / "reboot"        → Redémarrage
-"mets en veille" / "suspend"  → Suspension
+"processeur"               → % CPU
+"mémoire"                  → RAM utilisée
+"espace disque"            → Espace libre
+"quelle heure est-il"      → Heure et date
+"capture d'écran"          → Screenshot → ~/Images
+"recherche fichier.txt"    → Cherche dans ~/
+"cherche sur internet ..."  → Ouvre Firefox + Google
+"oublie tout"              → Efface l'historique LLM
 ```
 
-#### Conversation libre
-```
-Toute autre phrase → envoyée au LLM Ollama pour réponse conversationnelle
-```
+</details>
+
+### Conversation libre
+Toute phrase non reconnue comme commande est envoyée au **LLM Qwen2.5** avec streaming — Jarvis commence à parler avant d'avoir fini de générer.
 
 ---
 
-## Structure du projet
+## Architecture
 
 ```
 jarvis/
-├── main.py                      # Point d'entrée — boucle principale
-├── config.py                    # Configuration centralisée
-├── commandes.md                 # Référence des commandes (ce fichier)
-│
+├── main.py              # Orchestration — thread Qt + thread vocal
+├── config.py            # Configuration centralisée
 ├── brain/
-│   └── llm.py                   # Client Ollama (LLM local)
-│
+│   └── llm.py           # llama-cpp-python + streaming + historique
 ├── commands/
-│   └── executor.py              # Reconnaissance + exécution des commandes
-│                                  (normalisation Vosk, système numéroté)
+│   └── executor.py      # Pattern matching normalisé (accents, apostrophes)
 ├── interface/
-│   ├── jarvis_orb.html          # Orbe animée (canvas HTML5)
-│   ├── orb_window.py            # Fenêtre PyQt5 frameless
-│   └── server.py                # Serveur HTTP/SSE (mode navigateur)
-│
-├── models/
-│   ├── piper/                   # Modèles TTS (.onnx + .onnx.json)
-│   └── vosk/                    # Modèle STT français
-│
-├── security/
-│   └── confirmation.py          # Confirmation vocale (actions dangereuses)
-│
+│   ├── jarvis_orb.html  # Orbe canvas 2D animée (WebGL)
+│   └── orb_window.py    # Fenêtre PyQt5 frameless + overlay texte
 ├── tts/
-│   └── speak.py                 # Synthèse vocale Piper → aplay
-│
-└── voice/
-    ├── stt.py                   # Reconnaissance vocale Vosk
-    └── wakeword.py              # Détection mot-clé "Jarvis"
+│   └── speak.py         # Piper pipe direct + cache RAM phrases fixes
+├── voice/
+│   ├── stt.py           # Vosk vocab restreint + timeout adaptatif
+│   └── wakeword.py      # Détection "Jarvis" passive
+└── security/
+    └── confirmation.py  # Confirmation vocale oui/non
 ```
-
----
-
-## Configuration
-
-Fichier `config.py` — tous les paramètres au même endroit :
-
-| Variable | Valeur par défaut | Description |
-|----------|------------------|-------------|
-| `ASSISTANT_NAME` | `jarvis` | Mot-clé d'activation |
-| `VOSK_MODEL_PATH` | `models/vosk/vosk-model-small-fr-0.22` | Modèle STT |
-| `PIPER_MODEL_PATH` | `models/piper/fr_FR-gilles-low.onnx` | Modèle TTS |
-| `OLLAMA_URL` | `http://localhost:11434` | URL serveur Ollama |
-| `OLLAMA_MODEL` | `qwen2.5:0.5b` | Modèle LLM |
-| `SAMPLE_RATE` | `16000` | Fréquence audio |
 
 ---
 
 ## Stack technique
 
-| Composant | Technologie | Rôle |
-|-----------|------------|------|
-| Wake word | Vosk (vocab restreint) | Détection passive de "Jarvis" |
-| STT | Vosk `small-fr-0.22` | Transcription vocale française |
-| LLM | Ollama + qwen2.5:0.5b | Réponses conversationnelles |
-| TTS | Piper + voix Gilles | Synthèse vocale naturelle |
-| UI | PyQt5 + WebEngine | Fenêtre orbe animée |
-| Audio | sounddevice + aplay | Capture et lecture audio |
+| Composant | Technologie | Latence |
+|-----------|------------|---------|
+| Wake word | Vosk (vocab 3 mots) | ~50ms |
+| STT commandes | Vosk (vocab 50 mots) | ~100ms |
+| STT conversation | Vosk (vocab libre) | ~250ms |
+| LLM | llama-cpp-python Qwen2.5-0.5B Q4 | ~150ms premier token |
+| TTS (cache) | Piper pré-généré RAM | ~50ms |
+| TTS (dynamique) | Piper pipe direct → aplay | ~800ms |
+| UI | PyQt5 + QtWebEngine canvas 2D | 60 FPS |
+
+---
+
+## Optimisations
+
+- **Vosk partagé** — un seul modèle en RAM pour wakeword + STT (-300 Mo)
+- **Cache audio** — 10 phrases fixes pré-générées au démarrage (-1.5s/réponse)
+- **Piper sans fichier temp** — stdout pipé directement dans aplay (-1s)
+- **Streaming LLM+TTS** — parle phrase par phrase pendant la génération (-2s perçu)
+- **Normalisation Vosk** — suppression accents/apostrophes (+20% reconnaissance)
+- **Vocab restreint** — Vosk précision +15%, latence -40% sur les commandes
 
 ---
 
 ## Roadmap
 
-- [ ] Remplacer Ollama par `llama-cpp-python` (latence réduite)
-- [ ] Piper en pipe direct sans fichier temporaire
-- [ ] Cache audio pour les phrases fixes
-- [ ] Vocabulaire restreint STT pour les commandes
-- [ ] Historique de conversation
-- [ ] Whisper.cpp pour une meilleure précision STT
-- [ ] Support multi-langue
+- [ ] Whisper.cpp `tiny-fr` — précision STT 75% → 92%
+- [ ] Kokoro TTS — latence 800ms → 150ms
+- [ ] Qwen2.5-1.5B Q3 — meilleure qualité LLM
+- [ ] VAD Silero — détection fin de phrase plus précise
+- [ ] Démarrage automatique au login
 
 ---
 
 <div align="center">
 
-Fait avec Python · Tourne entièrement en local · Aucune donnée envoyée sur internet
+**100% local · Zéro cloud · Zéro tracking · Zéro internet requis**
+
+*Fait avec Python sur Linux*
 
 </div>
