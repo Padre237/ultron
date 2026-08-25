@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Environnement virtuel
+venv/
+
+# Modèles (trop lourds pour git — voir INSTALL.md)
+models/vosk/
+models/gguf/
+models/piper/*.onnx
+models/piper/*.onnx.json
+
+# Logs
+logs/*.log
+logs/*.log.*
+
+# Divers
+.DS_Store
+*.swp
+*.swo
+.env
